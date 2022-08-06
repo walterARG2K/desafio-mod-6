@@ -14,7 +14,6 @@ var friendName;
 //initialize realtime database
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const API_URL = "";
 
 const state = {
     handPlayed: { myPlay: "false" },
@@ -42,11 +41,11 @@ const state = {
         const gameroom = Math.floor(Math.random() * (10000 - 1000) + 1000);
         var x = randomString({ length: 2 }).toUpperCase();
 
-        await fetch(API_URL + `/users/${userName}/${gameroom + x}`, {
+        await fetch( `/users/${userName}/${gameroom + x}`, {
             method: "post",
         });
 
-        await fetch(API_URL + `/gameroom/${userName}/${gameroom + x}`, {
+        await fetch( `/gameroom/${userName}/${gameroom + x}`, {
             method: "post",
         });
 
@@ -55,7 +54,7 @@ const state = {
     },
     async joinGameroom(userName, gameroom) {
         var status;
-        await fetch(API_URL + `/users/${userName}/${gameroom}`, {
+        await fetch( `/users/${userName}/${gameroom}`, {
             method: "put",
         }).then(async (res) => {
             await res.json().then((resp) => {
@@ -66,7 +65,7 @@ const state = {
                     localStorage.setItem("userName", userName);
                     localStorage.setItem("roomId", gameroom);
                 } else if (resp == "201") {
-                    fetch(API_URL + `/gameroom/${userName}/${gameroom}`, {
+                    fetch( `/gameroom/${userName}/${gameroom}`, {
                         method: "post",
                     });
                     localStorage.setItem("userName", userName);
@@ -85,7 +84,7 @@ const state = {
         var friendName;
         var myScore;
 
-        await fetch(API_URL + `/users/${gameroom}`).then(async (res) => {
+        await fetch( `/users/${gameroom}`).then(async (res) => {
             await res.json().then((r) => {
                 r.forEach((e) => {
                     Object.keys(e)[0] != userName ? (friendName = e) : (myScore = e);
@@ -98,7 +97,7 @@ const state = {
         const roomId = localStorage.getItem("roomId");
         const userName = localStorage.getItem("userName");
 
-        await fetch(API_URL + `/gameroom/${userName}/${roomId}`).then(async (res) => {
+        await fetch( `/gameroom/${userName}/${roomId}`).then(async (res) => {
             await res.json().then((resp) => {
                 const roomRef = ref(database, `gameroom/${resp[0]}/users`);
                 var aux = 0;
@@ -128,7 +127,7 @@ const state = {
         const userName = localStorage.getItem("userName");
         const roomId = localStorage.getItem("roomId");
 
-        await fetch(API_URL + `/status/${userName}/${roomId}/${boolean}`, {
+        await fetch( `/status/${userName}/${roomId}/${boolean}`, {
             method: "put",
         }).then(() => {
             if (snapshoot && this.auxiliar == 0) {
@@ -141,11 +140,11 @@ const state = {
         const userName = localStorage.getItem("userName");
         const roomId = localStorage.getItem("roomId");
 
-        await fetch(API_URL + `/gameroom/${userName}/${roomId}/${boolean}`, {
+        await fetch( `/gameroom/${userName}/${roomId}/${boolean}`, {
             method: "put",
         });
 
-        await fetch(API_URL + `/gameroom/${userName}/${roomId}`).then(async (res) => {
+        await fetch( `/gameroom/${userName}/${roomId}`).then(async (res) => {
             await res.json().then((resp) => {
                 let playerRef = ref(database, `gameroom/${resp[0]}/users/${resp[1]}/start`);
                 let myRef = ref(database, `gameroom/${resp[0]}/users/${resp[2]}/start`);
@@ -179,7 +178,7 @@ const state = {
         }
         const username = localStorage.getItem("userName");
         const gameroom = localStorage.getItem("roomId");
-        await fetch(API_URL + `/choice/${username}/${gameroom}/${choice}`, {
+        await fetch( `/choice/${username}/${gameroom}/${choice}`, {
             method: "put",
         });
     },
@@ -197,17 +196,17 @@ const state = {
 
         //win
         if (myPlay == 0 && computerPlay == 2) {
-            fetch(API_URL + `/score/${username}/${gameroom}`, {
+            fetch( `/score/${username}/${gameroom}`, {
                 method: "put",
             });
             this.whoWin.win = 1;
         } else if (myPlay == 1 && computerPlay == 0) {
-            fetch(API_URL + `/score/${username}/${gameroom}`, {
+            fetch( `/score/${username}/${gameroom}`, {
                 method: "put",
             });
             this.whoWin.win = 1;
         } else if (myPlay == 2 && computerPlay == 1) {
-            fetch(API_URL + `/score/${username}/${gameroom}`, {
+            fetch( `/score/${username}/${gameroom}`, {
                 method: "put",
             });
             this.whoWin.win = 1;
