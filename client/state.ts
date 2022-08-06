@@ -14,7 +14,7 @@ var friendName;
 //initialize realtime database
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const API_URL = process.env.API_URL_LOCATION;
+const API_URL = "";
 
 const state = {
     handPlayed: { myPlay: "false" },
