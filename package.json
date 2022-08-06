@@ -9,7 +9,7 @@
     "dev:server": "nodemon --watch ./server/index.ts --exec ts-node ./server/index.ts",
     "build:client": "parcel build --dist-dir build",
     "build:server": "cd server && tsc",
-    "build": "npm build:client && npm build:server",
+    "build": "npm run build:client && npm run build:server",
     "start": "node ./server/index.js"
   },
   "dependencies": {
