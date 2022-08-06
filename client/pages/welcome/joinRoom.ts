@@ -42,7 +42,20 @@ export function joinRoom(params) {
     </form>
     <hands-custom></hands-custom>
             `;
+setTimeout(() => {
+        let form = document.querySelector("form");
+        let input = form?.querySelector("input");
 
+        input?.addEventListener("focus", () => {
+            let hands = document.querySelector("hands-custom");
+            hands?.classList.add("hidden");
+        });
+
+        input?.addEventListener("blur", () => {
+            let hands = document.querySelector("hands-custom");
+            hands?.classList.remove("hidden");
+        });
+    }, 0);
             function notFound() {
                 div.innerHTML = `
     <text-custom text="h1">Piedra, Papel <span style="opacity:70%">ó</span> Tijera</text-custom>
