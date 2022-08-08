@@ -19,7 +19,7 @@ export function initInstructionsReady(params) {
     <text-custom><span class="name"></span><br><span class="span" style="color:#FF6442"></span></text-custom>
     <text-custom>Sala<br><span>${roomId}</span></text-custom>
     </div>
-    <div style="margin-top:100px">
+    <div style="display:flex; align-items:center; margin-top:100px">
     <text-custom text="p">Presioná jugar
 y elegí: piedra, papel o tijera antes de que pasen los 3 segundos.</text-custom>
     </div>
