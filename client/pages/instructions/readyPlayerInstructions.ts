@@ -59,7 +59,7 @@ async function playersReady(div, style, params) {
     <text-custom><span class="name"></span><br><span class="span" style="color:#FF6442"></span></text-custom>
     <text-custom>Sala<br><span>${roomId}</span></text-custom>
     </div>
-    <div style="margin-top:100px">
+    <div style="display:flex; align-items:center; margin-top:100px">
     <text-custom text="p">Esperando a que <span style="font-weight:900; color:#FF6442">${friendName}</span> presione ¡Jugar!...</text-custom>
     </div>
     <hands-custom></hands-custom>
