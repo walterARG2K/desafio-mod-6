@@ -59,7 +59,7 @@ const state = {
         }).then(async (res) => {
             await res.json().then((resp) => {
                 if (resp == "200") {
-                    fetch(API_URL + `/gameroom/${userName}/${gameroom}`, {
+                    fetch(`/gameroom/${userName}/${gameroom}`, {
                         method: "post",
                     });
                     localStorage.setItem("userName", userName);
