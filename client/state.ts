@@ -165,7 +165,7 @@ const state = {
     },
     async friendHand() {
         const gameroom = localStorage.getItem("roomId");
-        const promise = await fetch(API_URL + `/choice/${friendName}/${gameroom}`);
+        const promise = await fetch( `/choice/${friendName}/${gameroom}`);
         return await promise.json();
     },
     async playerHand(choice) {
